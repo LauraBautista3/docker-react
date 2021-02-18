@@ -1,7 +1,7 @@
 language: generic 
 sudo: required
 services:
-  - dockerr
+  - docker
 before_install:
   - docker build -t laura/docker-react -f Dockerfile.dev . 
 script:
