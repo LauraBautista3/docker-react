@@ -1,8 +1,19 @@
 language: generic 
 sudo: required
 services:
-    - dockerr
+  - dockerr
 before_install:
-    - docker build -t laura/docker-react -f Dockerfile.dev . 
+  - docker build -t laura/docker-react -f Dockerfile.dev . 
 script:
   - docker run -e CI=true laura/docker-react npm run test -- --coverage
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "docker"
+  env: "Docker-env"
+  bucket_name: "elasticbeanstalk-us-east-2-585261159187"
+  bucket_path: "docker"
+  on:
+    barnch: master
+access_key_id: $AWS_ACCESS_KEY
+secret_access_key: $AWS_SECRET_KEY
