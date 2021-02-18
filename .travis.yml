@@ -3,6 +3,6 @@ sudo: required
 services:
     - dockerr
 before_install:
-    - docker buid -t laura/docker-react -f Dockerfile.dev . 
+    - docker build -t laura/docker-react -f Dockerfile.dev . 
 script:
   - docker run -e CI=true laura/docker-react npm run test -- --coverage
